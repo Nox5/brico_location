@@ -22,7 +22,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="required")
-     * @Assert\Length(min = 2, max = 50, minMessage = "Your name must be at least {{ limit }} characters long", 
+     * @Assert\Length(min = 3, max = 50, minMessage = "Your name must be at least {{ limit }} characters long", 
      * maxMessage = "Your name cannot be longer than {{ limit }} characters")
      */
     private $name;
@@ -30,6 +30,7 @@ class Category
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="required")
+     * @Assert\Length(min=3, minMessage="Your contenu must be at least {{ limit }} characters long")
      */
     private $content;
 
