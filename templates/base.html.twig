@@ -14,13 +14,16 @@
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/css/grix.min.css">
         {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-            <!-- Axentix JS minified version -->
-            <script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
-        {% endblock %}
+        
     </head>
     <body>
+        {{ include('partials/nav.html.twig') }}
         {% block body %}{% endblock %}
+        {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+        <!-- Axentix JS minified version -->
+        <script src="https://cdn.jsdelivr.net/npm/axentix@1.2.1/dist/js/axentix.min.js"></script>
+        {% endblock %}
+        {{ include('partials/footer.html.twig') }}
     </body>
 </html>

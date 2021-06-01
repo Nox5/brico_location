@@ -2,16 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\OfferRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\Entity(repositoryClass=OfferRepository::class)
  */
-class Category
+class Offer
 {
+
+    public function __construct()
+    {
+        
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,11 +27,23 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="required")
-     * @Assert\Length(min = 3, max = 50, minMessage = "Your name must be at least {{ limit }} characters long", 
-     * maxMessage = "Your name cannot be longer than {{ limit }} characters")
+     * @Assert\NotBlank
+     * @Assert\Length(min=3, max=50, minMessage="Votre nom doit être supérieur à {{ limit }} caractères",
+     * maxMessage="Votre nom ne doit pas dépasser {{ limit }} caractères")
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\NotBlank
+     */
+    private $price;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -33,14 +51,9 @@ class Category
     private $created_at;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $slug;
-
-    public function __construct()
-    {
-        $this->created_at = new DateTimeImmutable();
-    }
 
     public function getId(): ?int
     {
@@ -59,12 +72,36 @@ class Category
         return $this;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at)
     {
         $this->created_at = $created_at;
 

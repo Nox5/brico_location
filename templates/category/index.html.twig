@@ -3,7 +3,19 @@
 {% block title %}Category{% endblock %}
 
 {% block body %}
-    <p>test</p>
-    <h1>test</h1>
-    <h2>test2</h2>
+{% for categorie in categories %}
+<div class="container">
+    <div class="card shadow-1">
+        <div class="card-header">{{ categorie.name }}</div>
+        <div class="card-content">
+            <p>prout</p>
+        </div>
+        <div class="card-footer"><a href="{{ path('category') }}" class="btn rounded-1 blue press">Voir l'offre</a></div>
+        <div class="card-footer"><a href="{{ path('category_delete', {"id":categorie.id})}}" class="btn rounded-1 blue press">Supprimer la catégorie</a></div>
+        <div class="card-footer"><a href="{{ path('category_new')}}" class="btn rounded-1 blue press">Ajouter une catégorie</a></div>
+        <div class="card-footer"><a href="{{ path('category_edit', {"id":categorie.id})}}" class="btn rounded-1 blue press">Modifier la catégorie</a></div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
+
